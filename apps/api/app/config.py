@@ -3,17 +3,18 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 
 
+API_ENV = Path(__file__).resolve().parents[1] / ".env"
 ROOT_ENV = Path(__file__).resolve().parents[3] / ".env"
 
 
 class Settings(BaseSettings):
     app_name: str = "AI Tracing System API"
     api_host: str = "0.0.0.0"
-    api_port: int = 8000
+    api_port: int = 8100
     database_url: str = "sqlite:///./ai_tracing.db"
-    crawler_base_url: str = "http://127.0.0.1:8001"
+    crawler_base_url: str = "http://127.0.0.1:8101"
     crawler_timeout_ms: int = 1200000
-    frontend_origin: str = "http://localhost:5173"
+    frontend_origin: str = "http://localhost:5174"
     system_internal_token: str | None = None
     anthropic_api_url: str = "https://new-api.finstep.cn"
     anthropic_api_key: str | None = None
@@ -27,7 +28,7 @@ class Settings(BaseSettings):
     scheduler_timezone: str = "Asia/Shanghai"
 
     class Config:
-        env_file = str(ROOT_ENV)
+        env_file = (str(ROOT_ENV), str(API_ENV))
         extra = "ignore"
 
 
