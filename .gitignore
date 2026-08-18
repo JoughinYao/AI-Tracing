@@ -12,3 +12,9 @@ build/
 .vite/
 *.log
 .DS_Store
+# SQLite 临时文件
+*.db-shm
+*.db-wal
+*.db-journal
+.agents/
+
